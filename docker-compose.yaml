@@ -1,0 +1,56 @@
+---
+
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: wayofdev/rabbitmq:management-alpine-latest
+    container_name: ${COMPOSE_PROJECT_NAME_SAFE}_rabbitmq
+    restart: on-failure
+    networks:
+      default:
+        aliases:
+          - rabbitmq.${COMPOSE_PROJECT_NAME}.alias
+      shared:
+        aliases:
+          - rabbitmq.${COMPOSE_PROJECT_NAME}.alias
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-admin}
+    volumes:
+      - "rabbitmq_data:/var/lib/rabbitmq"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rabbitmq-${COMPOSE_PROJECT_NAME_SLUG}.rule=Host(`rabbitmq.${COMPOSE_PROJECT_NAME}.docker`)
+      - traefik.http.routers.rabbitmq-${COMPOSE_PROJECT_NAME_SLUG}.entrypoints=websecure
+      - traefik.http.routers.rabbitmq-${COMPOSE_PROJECT_NAME_SLUG}.tls=true
+      - traefik.http.services.rabbitmq-${COMPOSE_PROJECT_NAME_SLUG}.loadbalancer.server.port=15672
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    container_name: ${COMPOSE_PROJECT_NAME_SAFE}_mailhog
+    ports:
+      - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+    networks:
+      default:
+      shared:
+        aliases:
+          - mailhog.${COMPOSE_PROJECT_NAME}.alias
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.mailhog-${COMPOSE_PROJECT_NAME_SLUG}.rule=Host(`mail.${COMPOSE_PROJECT_NAME}.docker`)
+      - traefik.http.routers.mailhog-${COMPOSE_PROJECT_NAME_SLUG}.entrypoints=websecure
+      - traefik.http.routers.mailhog-${COMPOSE_PROJECT_NAME_SLUG}.tls=true
+      - traefik.http.services.mailhog-${COMPOSE_PROJECT_NAME_SLUG}.loadbalancer.server.port=8025
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  default:
+    name: project.${COMPOSE_PROJECT_NAME_SAFE}
+  shared:
+    external: true
+    name: ${SYSTEM_SERVICES_NETWORK}
+
+...
