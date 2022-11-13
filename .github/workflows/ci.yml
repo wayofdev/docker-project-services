@@ -44,4 +44,6 @@ jobs:
           install: true
 
       - name: Run dcgoss tests
-        run: make test
+        run: |
+          docker network create shared
+          make test

@@ -38,7 +38,7 @@ Containing docker services in this repository can be shared across all microserv
 
 ## 💻 Usage
 
-> ⚠️ **Warning**: Repository with [docker-shared-services](https://github.com/wayofdev/docker-shared-services) should be configured, up and running before
+> **Warning**: Repository with [docker-shared-services](https://github.com/wayofdev/docker-shared-services) should be configured, up and running before
 
 ### → Instructions
 
