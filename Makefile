@@ -4,17 +4,21 @@ ifeq ($(COMPOSE_PROJECT_NAME),)
 	COMPOSE_PROJECT_NAME=wod
 endif
 
+# BuildKit enables higher performance docker builds and caching possibility
+# to decrease build times and increase productivity for free.
 export DOCKER_BUILDKIT ?= 1
+
 export COMPOSE_PROJECT_NAME_SLUG = $(subst $e.,-,$(COMPOSE_PROJECT_NAME))
 export COMPOSE_PROJECT_NAME_SAFE = $(subst $e.,_,$(COMPOSE_PROJECT_NAME))
-export SYSTEM_SERVICES_NETWORK = $(addsuffix _network,$(subst $e.,_,$(SYSTEM_SERVICES_NAMESPACE)))
+export SHARED_SERVICES_NETWORK = $(addsuffix _network,$(subst $e.,_,$(SHARED_SERVICES_NAMESPACE)))
 
 DOCKER ?= docker -p $(COMPOSE_PROJECT_NAME_SAFE)
 DOCKER_COMPOSE ?= docker compose
 ENVSUBST ?= envsubst
 
 EXPORT_VARS = '\
-	$${SYSTEM_SERVICES_NETWORK} \
+	$${SHARED_SERVICES_NETWORK} \
+	$${COMPOSE_PROJECT_NAME} \
 	$${COMPOSE_PROJECT_NAME_SLUG} \
 	$${COMPOSE_PROJECT_NAME_SAFE} \
 	$${FORWARD_MAILHOG_PORT} \
