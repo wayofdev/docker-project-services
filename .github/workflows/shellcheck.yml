@@ -1,6 +1,6 @@
 ---
 
-name: Differential ShellCheck
+name: Differential shell-check
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository checkout
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 0
 
