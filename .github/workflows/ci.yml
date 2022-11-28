@@ -44,7 +44,9 @@ jobs:
           install: true
 
       - name: Prepare environment
-        run: make env
+        run: |
+          docker network create ss_network
+          make env
         env:
           COMPOSE_PROJECT_NAME: wod
 
