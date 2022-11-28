@@ -12,18 +12,31 @@ export COMPOSE_PROJECT_NAME_SLUG = $(subst $e.,-,$(COMPOSE_PROJECT_NAME))
 export COMPOSE_PROJECT_NAME_SAFE = $(subst $e.,_,$(COMPOSE_PROJECT_NAME))
 export SHARED_SERVICES_NETWORK = $(addsuffix _network,$(subst $e.,_,$(SHARED_SERVICES_NAMESPACE)))
 
-DOCKER ?= docker -p $(COMPOSE_PROJECT_NAME_SAFE)
+DOCKER ?= docker
 DOCKER_COMPOSE ?= docker compose
-ENVSUBST ?= envsubst
+
+# Support image with all needed binaries, like envsubst, mkcert, wait4x
+SUPPORT_IMAGE ?= wayofdev/build-deps:alpine-latest
+
+BUILDER_PARAMS ?= docker run --rm -i \
+	--env-file ./.env \
+	--env COMPOSE_PROJECT_NAME_SLUG=$(COMPOSE_PROJECT_NAME_SLUG) \
+	--env COMPOSE_PROJECT_NAME_SAFE=$(COMPOSE_PROJECT_NAME_SAFE) \
+	--env SHARED_SERVICES_NETWORK=$(SHARED_SERVICES_NETWORK)
+
+BUILDER ?= $(BUILDER_PARAMS) $(SUPPORT_IMAGE)
+
+# Shorthand wait4x command, executed through build-deps
+WAITER ?= $(BUILDER) wait4x
+
+# Shorthand envsubst command, executed through build-deps
+ENVSUBST ?= $(BUILDER) envsubst
 
 EXPORT_VARS = '\
 	$${SHARED_SERVICES_NETWORK} \
 	$${COMPOSE_PROJECT_NAME} \
 	$${COMPOSE_PROJECT_NAME_SLUG} \
-	$${COMPOSE_PROJECT_NAME_SAFE} \
-	$${FORWARD_MAILHOG_PORT} \
-	$${RABBITMQ_DEFAULT_USER} \
-	$${RABBITMQ_DEFAULT_PASS}'
+	$${COMPOSE_PROJECT_NAME_SAFE}'
 
 .EXPORT_ALL_VARIABLES:
 
@@ -66,7 +79,7 @@ help:
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
 .PHONY: help
 
-all: env up
+all: env mkcert up
 PHONY: all
 
 
@@ -85,6 +98,7 @@ env: ## Generate .env file from example
 # ------------------------------------------------------------------------------------
 up: ## Fire up project
 	$(DOCKER_COMPOSE) up --remove-orphans -d
+	make _kc-wait kc-configure kc-update
 .PHONY: up
 
 down: ## Stops and destroys running containers
@@ -141,7 +155,7 @@ lint: ## Lints yaml files inside project
 
 # RabbitMQ Actions
 # ------------------------------------------------------------------------------------
-rabbit-up: # Create and start rabbitmq container
+rabbit-up: ## Create and start rabbitmq container
 	$(DOCKER_COMPOSE) up -d rabbitmq
 .PHONY: rabbit-up
 
@@ -156,3 +170,35 @@ rabbit-clean: ## Removes container and its volume
 _rabbit-wait:
 	wait4x rabbitmq 'amqp://rabbitmq.$(COMPOSE_PROJECT_NAME).docker:5672'
 .PHONY: _rabbit-wait
+
+
+# Keycloak Actions
+# ------------------------------------------------------------------------------------
+kc-up: ## Create and start keycloak container
+	$(DOCKER_COMPOSE) up -d keycloak
+.PHONY: kc-up
+
+kc-recreate: kc-clean kc-up _kc-wait kc-configure kc-update ## Stop, delete container and volume, then create and start new one
+.PHONY: kc-recreate
+
+kc-clean: ## Removes keycloak, keycloak database containers and their volumes
+	$(DOCKER_COMPOSE) rm -svf keycloak-database keycloak
+	$(DOCKER) volume rm -f $(COMPOSE_PROJECT_NAME)_keycloak_data
+.PHONY: kc-clean
+
+_kc-wait:
+	# No support for local certs
+	# ${WAITER} http https://${KC_HOSTNAME} -t 1m
+.PHONY: _kc-wait
+
+kc-configure:
+	# @todo
+.PHONY: kc-configure
+
+kc-update:
+	# @todo
+.PHONY: kc-update
+
+mkcert:
+	mkcert -key-file keycloak/certs/key.pem -cert-file keycloak/certs/cert.pem auth.wod.docker *.wod.docker
+.PHONY: mkcert
