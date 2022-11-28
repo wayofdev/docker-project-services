@@ -43,6 +43,13 @@ jobs:
         with:
           install: true
 
+      - name: Prepare environment
+        run: |
+          docker network create ss_network
+          make env
+        env:
+          COMPOSE_PROJECT_NAME: wod
+
       - name: Run dcgoss tests
         run: |
           docker network create shared
