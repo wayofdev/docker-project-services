@@ -187,16 +187,19 @@ kc-clean: ## Removes keycloak, keycloak database containers and their volumes
 .PHONY: kc-clean
 
 _kc-wait:
-	# No support for local certs
-	# ${WAITER} http https://${KC_HOSTNAME} -t 1m
+	@$(DOCKER) run --rm --net=host --name='wait4x' atkrad/wait4x:latest \
+		http $(shell docker inspect --format 'http://127.0.0.1:{{ (index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort }}' $(COMPOSE_PROJECT_NAME)_keycloak) \
+		-t 1m
 .PHONY: _kc-wait
 
 kc-configure:
-	# @todo
+	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-master-realm.sh
+	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-client-realm.sh
+	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-admin-realm.sh
 .PHONY: kc-configure
 
 kc-update:
-	# @todo
+	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/update-realms.sh
 .PHONY: kc-update
 
 mkcert:
