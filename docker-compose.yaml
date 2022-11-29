@@ -69,6 +69,7 @@ services:
     volumes:
       - ./keycloak/certs/cert.pem:/opt/keycloak/conf/cert.pem
       - ./keycloak/certs/key.pem:/opt/keycloak/conf/key.pem
+      - ./keycloak/setup:/tmp/setup:ro
     networks:
       default:
         aliases:
@@ -81,8 +82,9 @@ services:
     env_file:
       - .env
     environment:
-      KC_FEATURES: "docker"
       KC_FEATURES_DISABLED: "jdbc-h2,jdbc-mariadb,jdbc-mssql,jdbc-mysql,jdbc-oracle"
+    ports:
+      - "8765:8080"
     links:
       - keycloak-database
     labels:
