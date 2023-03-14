@@ -23,16 +23,16 @@ This Repository is used together with SOA based projects, consisting of microser
 
 ### → Purpose
 
-Containing docker services in this repository can be shared across all microservices in one domain.
+The purpose of this repository is to contain Docker services that can be shared across all microservices in one domain.
 
 <br>
 
-## 📑 Requirements
+## 🚩 Requirements
 
 * **macOS** Monterey or **Linux**
 * **Docker** 20.10 or newer
   - [How To Install and Use Docker on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
-* **Cloned, configured and running** [docker-shared-services](https://github.com/wayofdev/docker-shared-services), to support system wide DNS, Routing and SSL support via Traefik.
+* **Cloned, configured and running** [docker-shared-services](https://github.com/wayofdev/docker-shared-services), to support system-wide DNS, Routing and SSL support via Traefik.
 
 <br>
 
@@ -42,7 +42,7 @@ Containing docker services in this repository can be shared across all microserv
 
 ### → Instructions
 
-1. Download repository:
+1. Clone repository:
 
    ```bash
    $ git clone git@github.com:wayofdev/docker-project-services.git
@@ -59,9 +59,9 @@ Containing docker services in this repository can be shared across all microserv
    $ make env
    ```
 
-   Edit created .env file, if it is needed. Probably you will want to change default domain.
+   Edit the created .env file if necessary. You may want to change the default domain.
 
-3. (Optional) Enable docker-compose.override file to run extra services, like pg-admin and others:
+3. (Optional) Enable the `docker-compose.override.yaml` file to run extra services, like pg-admin and others:
    ```bash
    $ make override
    ```
