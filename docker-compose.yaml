@@ -50,7 +50,7 @@ services:
       - traefik.http.services.mail-${COMPOSE_PROJECT_NAME_SLUG}.loadbalancer.server.port=8025
 
   keycloak-database:
-    image: postgres:13-alpine
+    image: postgres:15-alpine
     container_name: ${COMPOSE_PROJECT_NAME_SAFE}_keycloak_db
     restart: on-failure
     volumes:
