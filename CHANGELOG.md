@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/wayofdev/docker-project-services/compare/v1.1.0...v1.2.0) (2023-03-14)
+
+
+### Features
+
+* add auto-merge workflow ([f4bc162](https://github.com/wayofdev/docker-project-services/commit/f4bc162ed12d671a5201b9d0448ab32673889ef4))
+* updating workflow files ([34ded64](https://github.com/wayofdev/docker-project-services/commit/34ded642a8161744403048395857cc9815736461))
+
 ## [1.1.0](https://github.com/wayofdev/docker-project-services/compare/v1.0.0...v1.1.0) (2022-11-29)
 
 

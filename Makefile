@@ -79,7 +79,7 @@ help:
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
 .PHONY: help
 
-all: env mkcert up
+all: hooks env mkcert up
 PHONY: all
 
 

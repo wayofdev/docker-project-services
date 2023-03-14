@@ -9,7 +9,6 @@
   - ./*.md
 
 "type: maintenance":
-  - .dependabot/*
   - .github/workflows/*
   - app/tests/**/*
   - tests/**/*
