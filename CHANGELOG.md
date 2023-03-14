@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/wayofdev/docker-project-services/compare/v1.2.0...v1.3.0) (2023-03-14)
+
+
+### Features
+
+* enable auto-merge ([eab0970](https://github.com/wayofdev/docker-project-services/commit/eab0970ebb7c301a297707f0cd58d5b17e4e2d74))
+
+
+### Miscellaneous
+
+* **deps:** update postgres docker tag to v15 ([f68c60a](https://github.com/wayofdev/docker-project-services/commit/f68c60a16a6a8422e87235f004071175808de6d8))
+* **deps:** update quay.io/keycloak/keycloak docker tag to v20.0.5 ([9cb71ff](https://github.com/wayofdev/docker-project-services/commit/9cb71ffc61914c0b8e5d5fded93369ea29026788))
+
 ## [1.2.0](https://github.com/wayofdev/docker-project-services/compare/v1.1.0...v1.2.0) (2023-03-14)
 
 
