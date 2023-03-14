@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/wayofdev/docker-project-services/compare/v1.3.1...v1.3.2) (2023-03-14)
+
+
+### Miscellaneous
+
+* update readme ([4bf3a7d](https://github.com/wayofdev/docker-project-services/commit/4bf3a7d1011fc16b463bbaf142428901a1d80c7b))
+
 ## [1.3.1](https://github.com/wayofdev/docker-project-services/compare/v1.3.0...v1.3.1) (2023-03-14)
 
 
