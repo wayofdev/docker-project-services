@@ -4,7 +4,7 @@ set -euxv
 
 KCADM=/opt/keycloak/bin/kcadm.sh
 
-${KCADM} config credentials --server http://localhost:8080 --realm master --user "$KEYCLOAK_ADMIN" --password "$KEYCLOAK_ADMIN_PASSWORD"
+${KCADM} config credentials --server "$KC_INTERNAL_HOSTNAME_URL" --realm master --user "$KEYCLOAK_ADMIN" --password "$KEYCLOAK_ADMIN_PASSWORD"
 
 ${KCADM} create realms \
     -s "realm=${OIDC_ADMIN_REALM}" \
