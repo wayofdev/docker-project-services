@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/wayofdev/docker-project-services/compare/v1.3.4...v1.4.0) (2023-03-23)
+
+
+### Features
+
+* allow to connect to remote server ([27f9e5c](https://github.com/wayofdev/docker-project-services/commit/27f9e5c8ff0c8ea16fcb0b460ebf702256400244))
+
 ## [1.3.4](https://github.com/wayofdev/docker-project-services/compare/v1.3.3...v1.3.4) (2023-03-23)
 
 
