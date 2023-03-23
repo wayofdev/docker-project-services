@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/wayofdev/docker-project-services/compare/v1.3.3...v1.3.4) (2023-03-23)
+
+
+### Miscellaneous
+
+* **deps:** update peter-evans/enable-pull-request-automerge action to v3 ([1407424](https://github.com/wayofdev/docker-project-services/commit/1407424751ff1e58ce2ae2d1e8a23f93a9b48549))
+
 ## [1.3.3](https://github.com/wayofdev/docker-project-services/compare/v1.3.2...v1.3.3) (2023-03-21)
 
 
