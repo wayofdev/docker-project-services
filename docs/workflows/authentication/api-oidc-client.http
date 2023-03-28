@@ -1,0 +1,61 @@
+### Successful User Login
+
+POST {{public_url}}/token
+Content-Type: application/x-www-form-urlencoded
+User-Agent: PhpStorm
+
+client_id=user&username=john.roe&password=john.roe&grant_type=password
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+    client.global.set("refresh_token", response.body.refresh_token);
+%}
+
+### Failed User Login
+
+POST {{public_url}}/token
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+User-Agent: PhpStorm
+
+client_id=user&username=john.roe&password=wrong&grant_type=password
+
+### Successful Logout
+
+POST {{public_url}}/logout
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+X-Auth-Refresh-Token: {{refresh_token}}
+User-Agent: PhpStorm
+
+client_id=user&refresh_token={{refresh_token}}
+
+### Failed Logout
+
+POST {{public_url}}/logout
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+X-Auth-Refresh-Token: {{refresh_token}}
+User-Agent: PhpStorm
+
+client_id=user&refresh_token=invalid_token
+
+### Successful Refresh-Token
+
+POST {{public_url}}/refresh
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+X-Auth-Refresh-Token: {{refresh_token}}
+User-Agent: PhpStorm
+
+client_id=user&grant_type=refresh_token&refresh_token={{refresh_token}}
+
+### Failed Refresh-Token
+
+POST {{public_url}}/refresh
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+X-Auth-Refresh-Token: {{refresh_token}}
+User-Agent: PhpStorm
+
+client_id=user&grant_type=refresh_token&refresh_token=invalid_token

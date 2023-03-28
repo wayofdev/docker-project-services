@@ -3,3 +3,5 @@ docker-compose.override.yaml
 .DS_Store
 .env
 traefik/certs/*
+keycloak/themes/*
+docs/workflows/authentication/http-client.env.json
