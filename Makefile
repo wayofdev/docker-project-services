@@ -117,6 +117,10 @@ logs: ## Show logs for running containers in this project
 	$(DOCKER_COMPOSE) logs -f
 .PHONY: logs
 
+logs-keycloak: ## Show logs for running containers in this project
+	$(DOCKER_COMPOSE) logs keycloak -f
+.PHONY: logs
+
 ps: ## List running containers in this project
 	$(DOCKER_COMPOSE) ps
 .PHONY: ps
@@ -178,7 +182,7 @@ kc-up: ## Create and start keycloak container
 	$(DOCKER_COMPOSE) up -d keycloak
 .PHONY: kc-up
 
-kc-recreate: kc-clean kc-up _kc-wait kc-configure kc-update ## Stop, delete container and volume, then create and start new one
+kc-recreate: kc-clean kc-get-theme kc-up _kc-wait kc-configure kc-update ## Stop, delete container and volume, then create and start new one
 .PHONY: kc-recreate
 
 kc-clean: ## Removes keycloak, keycloak database containers and their volumes
@@ -192,15 +196,19 @@ _kc-wait:
 		-t 1m
 .PHONY: _kc-wait
 
-kc-configure:
+kc-configure: kc-get-theme
 	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-master-realm.sh
 	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-client-realm.sh
-	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-admin-realm.sh
+	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/setup-operations-realm.sh
 .PHONY: kc-configure
 
 kc-update:
 	$(DOCKER_COMPOSE) exec -T keycloak sh /tmp/setup/update-realms.sh
 .PHONY: kc-update
+
+kc-get-theme:
+	wget https://github.com/$(KC_THEME_REPOSITORY)/releases/latest/download/keywind.jar -O keycloak/themes/keywind.jar
+.PHONE: kc-get-theme
 
 mkcert:
 	mkcert -key-file keycloak/certs/key.pem -cert-file keycloak/certs/cert.pem auth.wod.docker *.wod.docker

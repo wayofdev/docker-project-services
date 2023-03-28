@@ -67,6 +67,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME_SAFE}_keycloak
     restart: on-failure
     volumes:
+      - ./keycloak/themes/keywind.jar:/opt/keycloak/providers/keywind.jar
       - ./keycloak/certs/cert.pem:/opt/keycloak/conf/cert.pem
       - ./keycloak/certs/key.pem:/opt/keycloak/conf/key.pem
       - ./keycloak/setup:/tmp/setup:ro
@@ -94,11 +95,6 @@ services:
       - traefik.http.routers.keycloak-${COMPOSE_PROJECT_NAME_SLUG}.tls=true
       - traefik.http.services.keycloak-${COMPOSE_PROJECT_NAME_SLUG}.loadbalancer.server.port=${KC_HTTP_PORT}
     entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 5s
-      timeout: 2s
-      retries: 15
 
 volumes:
   rabbitmq_data:
