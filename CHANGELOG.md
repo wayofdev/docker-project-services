@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/wayofdev/docker-project-services/compare/v1.5.0...v1.5.1) (2023-03-29)
+
+
+### Miscellaneous
+
+* increase wait4x timeout ([e805156](https://github.com/wayofdev/docker-project-services/commit/e805156be18c6655111c8f6b60f9c5af1fe6a2ce))
+
 ## [1.5.0](https://github.com/wayofdev/docker-project-services/compare/v1.4.0...v1.5.0) (2023-03-28)
 
 
