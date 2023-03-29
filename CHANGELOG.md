@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/wayofdev/docker-project-services/compare/v1.4.0...v1.5.0) (2023-03-28)
+
+
+### Features
+
+* extended keycloak configuration ([1370ced](https://github.com/wayofdev/docker-project-services/commit/1370ced32698e0df2cfaf3e343bdcc505f0f813f))
+
 ## [1.4.0](https://github.com/wayofdev/docker-project-services/compare/v1.3.4...v1.4.0) (2023-03-23)
 
 
