@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.10](https://github.com/wayofdev/docker-project-services/compare/v1.5.9...v1.5.10) (2023-09-03)
+
+
+### Miscellaneous
+
+* **deps:** update andreasaugustin/actions-template-sync action to v1.1.2 ([acbbafc](https://github.com/wayofdev/docker-project-services/commit/acbbafc5692f8de3145d5f22d7de6b2a4270705e))
+
 ## [1.5.9](https://github.com/wayofdev/docker-project-services/compare/v1.5.8...v1.5.9) (2023-07-22)
 
 
