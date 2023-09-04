@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.11](https://github.com/wayofdev/docker-project-services/compare/v1.5.10...v1.5.11) (2023-09-04)
+
+
+### Miscellaneous
+
+* **deps:** update actions/checkout action to v4 ([ef1e333](https://github.com/wayofdev/docker-project-services/commit/ef1e333d5e9446e27681c2c965dd8ef7083a5aaa))
+
 ## [1.5.10](https://github.com/wayofdev/docker-project-services/compare/v1.5.9...v1.5.10) (2023-09-03)
 
 
