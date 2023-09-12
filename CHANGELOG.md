@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.15](https://github.com/wayofdev/docker-project-services/compare/v1.5.14...v1.5.15) (2023-09-12)
+
+
+### Miscellaneous
+
+* **deps:** update quay.io/keycloak/keycloak docker tag to v22.0.3 ([486f40d](https://github.com/wayofdev/docker-project-services/commit/486f40d9ba09fe34ee702a5c11906a285dbc91c0))
+
 ## [1.5.14](https://github.com/wayofdev/docker-project-services/compare/v1.5.13...v1.5.14) (2023-09-12)
 
 
