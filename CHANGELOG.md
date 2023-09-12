@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.14](https://github.com/wayofdev/docker-project-services/compare/v1.5.13...v1.5.14) (2023-09-12)
+
+
+### Miscellaneous
+
+* **deps:** update docker/setup-qemu-action action to v3 ([99292f3](https://github.com/wayofdev/docker-project-services/commit/99292f37f4976ac07707cae6b2e97c7e1ffde3ae))
+
 ## [1.5.13](https://github.com/wayofdev/docker-project-services/compare/v1.5.12...v1.5.13) (2023-09-12)
 
 
