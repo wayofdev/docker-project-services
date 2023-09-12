@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.13](https://github.com/wayofdev/docker-project-services/compare/v1.5.12...v1.5.13) (2023-09-12)
+
+
+### Miscellaneous
+
+* **deps:** update docker/setup-buildx-action action to v3 ([098e9ec](https://github.com/wayofdev/docker-project-services/commit/098e9ec043e2e88d97207bbe04a1c9759856dd31))
+
 ## [1.5.12](https://github.com/wayofdev/docker-project-services/compare/v1.5.11...v1.5.12) (2023-09-11)
 
 
