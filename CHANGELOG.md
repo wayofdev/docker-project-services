@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.16](https://github.com/wayofdev/docker-project-services/compare/v1.5.15...v1.5.16) (2023-09-15)
+
+
+### Miscellaneous
+
+* **deps:** update postgres docker tag to v16 ([d43330e](https://github.com/wayofdev/docker-project-services/commit/d43330ec31b5cdd63fe6a4731812cd5819018dd9))
+
 ## [1.5.15](https://github.com/wayofdev/docker-project-services/compare/v1.5.14...v1.5.15) (2023-09-12)
 
 
