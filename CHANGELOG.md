@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.20](https://github.com/wayofdev/docker-project-services/compare/v1.5.19...v1.5.20) (2023-10-03)
+
+
+### Miscellaneous
+
+* **deps:** update redhat-plumbers-in-action/differential-shellcheck action to v5 ([ee2f55b](https://github.com/wayofdev/docker-project-services/commit/ee2f55b7aa84d7fbee2957685a2106cb8c910373))
+
 ## [1.5.19](https://github.com/wayofdev/docker-project-services/compare/v1.5.18...v1.5.19) (2023-09-24)
 
 
