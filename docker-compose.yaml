@@ -63,7 +63,7 @@ services:
       - "5432"
 
   keycloak:
-    image: quay.io/keycloak/keycloak:22.0.5
+    image: quay.io/keycloak/keycloak:23.0.0
     container_name: ${COMPOSE_PROJECT_NAME_SAFE}_keycloak
     restart: on-failure
     volumes:
